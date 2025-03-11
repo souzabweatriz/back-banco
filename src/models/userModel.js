@@ -36,3 +36,4 @@ const deleteUser = async (id) => {
 };
 
 module.exports = { getUsers, getUserById, createUser, updateUser, deleteUser };
+

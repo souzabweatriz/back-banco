@@ -8,7 +8,7 @@ const getAllUsers = async (req, res) =>{
         res.status(404).json({message: "Erro ao buscar usuários."});
     }
 };
-const getUser = async (req, res) => {
+const getUserById = async (req, res) => {
     try {
         const user = await userModel.getUserById(req.params.id);
         if (!user) {
@@ -16,7 +16,7 @@ const getUser = async (req, res) => {
         }
         res.json(user);
     } catch (error) {
-        res.status(500).json({ message: "Erro ao buscar usuário." });
+        res.status(400).json({ message: "Erro ao buscar usuário." });
     }
 };
 
@@ -27,10 +27,10 @@ const createUser = async (req, res) => {
         res.status(201).json(newUser);
     } catch (error) {
 	 console.log(error);
-        if (error.code === "23505") { // Código de erro do PostgreSQL para chave única violada
-            return res.status(400).json({ message: "E-mail já cadastrado." });
+        if (error.code === "23505") { 
+            return res.status(400).json({ message: "E-mail já utilizado" });
         }
-        res.status(500).json({ message: "Erro ao criar usuário." });
+        res.status(400).json({ message: "Erro ao criar usuário" });
     }
 };
 
@@ -39,11 +39,11 @@ const updateUser = async (req, res) => {
         const { name, email } = req.body;
         const updatedUser = await userModel.updateUser(req.params.id, name, email);
         if (!updatedUser) {
-            return res.status(404).json({ message: "Usuário não encontrado." });
+            return res.status(404).json({ message: "Esse Usuário não foi encontrado" });
         }
         res.json(updatedUser);
     } catch (error) {
-        res.status(500).json({ message: "Erro ao atualizar usuário." });
+        res.status(400).json({ message: "Erro ao atualizar usuário." });
     }
 };
 
@@ -52,8 +52,8 @@ const deleteUser = async (req, res) => {
         const message = await userModel.deleteUser(req.params.id);
         res.json(message);
     } catch (error) {
-        res.status(500).json({ message: "Erro ao deletar usuário." });
+        res.status(400).json({ message: "Erro ao deletar usuário." });
     }
 };
 
-module.exports = { getAllUsers, getUser, createUser, updateUser, deleteUser };
+module.exports = { getAllUsers, getUserById, createUser, updateUser, deleteUser };
