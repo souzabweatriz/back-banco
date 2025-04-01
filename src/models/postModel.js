@@ -55,8 +55,9 @@ const getPostByUser = async (user_id) => {
         FROM posts
         LEFT JOIN users ON posts.users_id = users.id
         WHERE user_id = $1;
-        `
-    )
+        `, [user_id]
+    );
+    return result.rows[0];
 }
 
 module.exports = { getPost, getPostById, createPost, updatePost, deletePost, getPostByUser};
