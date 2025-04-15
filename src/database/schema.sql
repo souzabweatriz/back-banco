@@ -14,6 +14,7 @@ INSERT INTO users (name, email) VALUES
     ('Felipe Dev', 'felipedev@email.com');
 
 SELECT * FROM users;
+ALTER TABLE users ADD COLUMN photo TEXT;
 
 CREATE TABLE posts (
     id SERIAL PRIMARY KEY,
@@ -21,10 +22,10 @@ CREATE TABLE posts (
     description VARCHAR(200)
 );
 
-INSERT INTO posts (user_id description) VALUES
+INSERT INTO posts (user_id, description) VALUES
 (1, 'Top D+'),
 (2, 'Já to véio 👴'),
 (1, '👓🎸🧑‍🦲'),
-(1, 'Eu amo BACK-END!!!'),
+(1, 'Eu amo BACK-END!!!');
 
-SELECT * FROM pots;
+SELECT * FROM posts;
