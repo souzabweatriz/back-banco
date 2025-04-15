@@ -11,7 +11,7 @@
 
 ## 🔗 Acesse a documentação do Postman
 
-#### Para acessar clique aqui, https://documenter.getpostman.com/view/43016771/2sAYk8tMuN
+#### Para acessar clique aqui, https://documenter.getpostman.com/view/37231931/2sAYk8tMyi
 
 ## 🔗 Documentação do Swagger
 ![alt text](image.png)
