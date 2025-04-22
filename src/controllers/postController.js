@@ -24,7 +24,7 @@ const getPost = async (req, res) => {
 const createPost = async (req, res) => {
     try {
         const { user_id, description } = req.body
-        const newPost = await userModel.createPost(user_id, description);
+        const newPost = await postModel.createPost(user_id, description);
         res.status(201).json(newPost);
     } catch (error) {
         res.status(400).json({ message: "Erro ao criar Post"})
@@ -53,6 +53,18 @@ const deletePost = async (req, res) => {
     }
 };
 
+const getPostByUser = async (req, res) => {
+    try {
+        const post = await postModel.getPostByUser(req.body);
+        if (!post) {
+            return res.status(404).json({ message: "Posts do usuário não encontrado!" });
+        }
+        res.status(200).json(post);
+    } catch (error) {
+        res.status(404).json({ message: "Erro ao buscar posts do usuário" });
+    }
+};
 
 
-module.exports = { getAllPosts, getPost, createPost, updatePost, deletePost };
+
+module.exports = { getAllPosts, getPost, createPost, updatePost, deletePost, getPostByUser };

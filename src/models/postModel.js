@@ -1,31 +1,18 @@
 const pool = require("../config/database");
 
 const getPost = async () => {
-const result = await pool.query(
-    `
-    SELECT posts.*, users.name AS users_name
-    FROM posts
-    LEFT JOIN users ON posts.users_id = users.id
-    `
-);
-return result.rows;
+    const result = await pool.query(`SELECT posts.*, users.name AS user_name FROM posts LEFT JOIN users ON posts.user_id = users.id`);
+    return result.rows;
 };
 
 const getPostById = async (id) => {
-    const result = await pool.query(
-        `
-        SELECT posts.*, users.name AS users_name
-        FROM posts 
-        LEFT JOIN users ON posts.users_id = users.id
-        WHERE posts.id = $1
-        `,[id]
-    );
+    const result = await pool.query(`SELECT posts.*, users.name AS user_name FROM posts LEFT JOIN users ON posts.user_id = users.id WHERE posts.id = $1`, [id]);
     return result.rows[0];
 };
 
 const createPost = async (user_id, description) =>{
     const result = await pool.query(
-        "INSERT INTO posts (user_id, description) VALUES ($1, $2) RETURNING *",
+         "INSERT INTO posts (user_id, description) VALUES ($1, $2) RETURNING *",
         [user_id, description]
     );
     return result.rows[0];

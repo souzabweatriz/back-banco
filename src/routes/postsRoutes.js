@@ -24,6 +24,8 @@ router.use(apiKeyMiddleware);
  */
 router.get("/posts", postController.getAllPosts);
 
+router.get("userpost", postController.getPostByUser);
+
 /**
  * @swagger
  * /api/posts/{id}:
@@ -113,5 +115,6 @@ router.put("/posts/:id", postController.updatePost);
  *         description: Post atualizado
  */
 router.delete("/posts/:id", postController.deletePost);
+
 
 module.exports = router;
