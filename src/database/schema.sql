@@ -25,7 +25,7 @@ CREATE TABLE posts (
 INSERT INTO posts (user_id, description) VALUES
 (1, 'Top D+'),
 (2, 'Já to véio 👴'),
-(1, '👓🎸🧑‍🦲'),
-(1, 'Eu amo BACK-END!!!');
+(3, '👓🎸🧑‍🦲'),
+(3, 'Eu amo BACK-END!!!');
 
 SELECT * FROM posts;
